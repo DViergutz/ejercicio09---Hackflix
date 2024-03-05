@@ -1,0 +1,59 @@
+header {
+  background-image: url("../src/imgs/wire-frame-1311161_1280.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#modalPoster {
+  width: 300px;
+  height: 462px;
+}
+
+/* .card-img-top {
+  height: 207px;
+} */
+
+.card-img-top:hover {
+  scale: 1.25;
+  z-index: 99;
+}
+
+.modal-blur-bg {
+  background-color: rgba(111, 236, 255, 0.471);
+  backdrop-filter: blur(10px);
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111111;
+  color: red;
+}
+
+.navbarBrand {
+  padding: 16px;
+}
+
+.navbarBrand:hover {
+  background-color: #333333;
+
+  color: red;
+}
