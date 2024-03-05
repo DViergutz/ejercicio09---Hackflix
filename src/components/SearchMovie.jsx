@@ -39,6 +39,7 @@ function SearchMovie() {
           },
         });
         totalPages = response.data.total_pages;
+
         setMoviesData(() => [...response.data.results]);
         console.log(response);
       } catch (error) {
