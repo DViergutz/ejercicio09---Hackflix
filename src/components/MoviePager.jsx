@@ -34,10 +34,7 @@ function MoviePager() {
 
         // total_pages = response.data.res.total_pages;
 
-        setMoviesData((prevMoviesData) => [
-          ...prevMoviesData, //its an array containing the previous MoviesData when calling setMoviesData
-          ...response.data.results,
-        ]);
+        setMoviesData((prevMoviesData) => [...response.data.results]);
       } catch (error) {
         console.error(error);
       }
@@ -100,6 +97,35 @@ function MoviePager() {
             }
           })}
       </div>
+      <nav aria-label="Page navigation">
+        <ul className="pagination justify-content-center p-2 rounded-bottom mt-5">
+          <li className="page-item w-25">
+            <a
+              className="page-link"
+              onClick={() => {
+                setPage((prevPage) => prevPage - 1);
+                window.scrollTo(0, 0);
+                console.log(page);
+              }}
+            >
+              Previous Page
+            </a>
+          </li>
+
+          <li className="page-item w-25">
+            <a
+              className="page-link"
+              onClick={() => {
+                setPage((prevPage) => prevPage + 1);
+                window.scrollTo(0, 0);
+                console.log(page);
+              }}
+            >
+              Next Page
+            </a>
+          </li>
+        </ul>
+      </nav>
     </>
   );
 }

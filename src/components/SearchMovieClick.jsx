@@ -27,7 +27,7 @@ function SearchMovieClick() {
         method: "get",
         url: "https://api.themoviedb.org/3/search/movie",
         params: {
-          query: searchQuery,
+          query: searchValue.value,
           include_adult: "false",
           include_video: "false",
           language: "en-US",
@@ -55,7 +55,6 @@ function SearchMovieClick() {
   const submitForm = (event) => {
     event.preventDefault();
     console.log("value: ", searchValue.value);
-    setSearchQuery(searchValue.value);
     getMovieData();
   };
 
@@ -93,7 +92,10 @@ function SearchMovieClick() {
                     <div className="card p-2">
                       <Link to={`/movie/${movie.id}`} state={movie}>
                         <img
-                          src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                          src={
+                            movie.poster_path &&
+                            `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                          }
                           className="card-img-top rounded"
                           alt="no poster found"
                           // onClick={() => movieClick(movie)}

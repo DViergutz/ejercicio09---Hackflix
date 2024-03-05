@@ -18,6 +18,7 @@ function SearchMovie() {
   const [searchQuery, setSearchQuery] = useState("");
 
   let totalPages = 99;
+  const searchValue = useInput("");
 
   useEffect(() => {
     const getMovieData = async () => {
@@ -27,7 +28,7 @@ function SearchMovie() {
           method: "get",
           url: "https://api.themoviedb.org/3/search/movie",
           params: {
-            query: searchQuery,
+            query: searchValue.value,
             include_adult: "false",
             include_video: "false",
             language: "en-US",
@@ -53,9 +54,8 @@ function SearchMovie() {
     }
 
     <FoundMovie moviesData={moviesData} />;
-  }, [searchQuery, page]);
+  }, [searchValue.value, page]);
 
-  const searchValue = useInput("");
   return (
     <>
       <div className="seachBar mt-3">
@@ -67,11 +67,7 @@ function SearchMovie() {
             className="w-50"
             placeholder="insert Moviename"
             value={searchValue.value}
-            onChange={(e) => {
-              searchValue.onChange(e);
-              setSearchQuery(e.target.value);
-              setPage(1);
-            }}
+            onChange={searchValue.onChange}
           />
           <InputGroup.Text id="inputGroup-sizing-default">
             SearchValue: {searchValue.value}
