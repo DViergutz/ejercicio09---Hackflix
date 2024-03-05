@@ -5,7 +5,7 @@ const useInput = (initialValue) => {
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log(value);
+    // console.log(value);
   };
   return { value, onChange: handleChange };
 };

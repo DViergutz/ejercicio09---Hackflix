@@ -19,41 +19,35 @@ function SearchMovie() {
 
   let totalPages = 99;
 
-  useEffect(() => {
-    const getMovieData = async () => {
-      // console.log("page: " + page);
-      try {
-        const response = await axios({
-          method: "get",
-          url: "https://api.themoviedb.org/3/search/movie",
-          params: {
-            query: searchQuery,
-            include_adult: "false",
-            include_video: "false",
-            language: "en-US",
-            page: page,
-            sort_by: "popularity.desc",
-          },
-          headers: {
-            accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2RkYzZhYWZiMThjMjNhZGIxMWVjNGRkMWIxOTk3YiIsInN1YiI6IjYzZmNhZTZjNmFhOGUwMDBmMGI3NzE4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cxxXmEY4dE-Rq0b9wSnxXuVQvSu2DuKyuudv9IV8rcc",
-          },
-        });
-        totalPages = response.data.total_pages;
+  const getMovieData = async () => {
+    // console.log("page: " + page);
+    try {
+      const response = await axios({
+        method: "get",
+        url: "https://api.themoviedb.org/3/search/movie",
+        params: {
+          query: searchQuery,
+          include_adult: "false",
+          include_video: "false",
+          language: "en-US",
+          page: page,
+          sort_by: "popularity.desc",
+        },
+        headers: {
+          accept: "application/json",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2RkYzZhYWZiMThjMjNhZGIxMWVjNGRkMWIxOTk3YiIsInN1YiI6IjYzZmNhZTZjNmFhOGUwMDBmMGI3NzE4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cxxXmEY4dE-Rq0b9wSnxXuVQvSu2DuKyuudv9IV8rcc",
+        },
+      });
+      totalPages = response.data.total_pages;
 
-        setMoviesData(() => [...response.data.results]); //...movies for inf.scroll
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    if (searchQuery !== "") {
-      getMovieData();
+      setMoviesData((prevMovies) => [...prevMovies, ...response.data.results]);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    <FoundMovie moviesData={moviesData} />;
-  }, [searchQuery, page]);
+  <FoundMovie moviesData={moviesData} />;
 
   const searchValue = useInput("");
   return (
@@ -71,6 +65,7 @@ function SearchMovie() {
               searchValue.onChange(e);
               setSearchQuery(e.target.value);
               setPage(1);
+              getMovieData();
             }}
           />
           <InputGroup.Text id="inputGroup-sizing-default">
@@ -82,7 +77,10 @@ function SearchMovie() {
       {moviesData.length > 0 ? (
         <InfiniteScroll
           dataLength={moviesData.length}
-          next={() => setPage((prevPage) => prevPage + 1)}
+          next={() => {
+            setPage((prevPage) => prevPage + 1);
+            getMovieData();
+          }}
           hasMore={true}
           loader={
             <>

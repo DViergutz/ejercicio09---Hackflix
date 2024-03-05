@@ -7,6 +7,8 @@ import About from "./components/About";
 import Contact from "./components/contact";
 import RouteRedirectMovie from "./components/RouteRedirectMovie";
 import Home from "./components/Home";
+import MoviePager from "./components/MoviePager";
+import SearchMovieClick from "./components/SearchMovieClick";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +20,20 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "movie/:movieId",
-        element: <MovieDetails />,
+        path: "movie_pager",
+        element: <MoviePager />,
+      },
+      {
+        path: "searchClick",
+        element: <SearchMovieClick />,
       },
       {
         path: "search",
         element: <SearchMovie />,
+      },
+      {
+        path: "movie/:movieId",
+        element: <MovieDetails />,
       },
       {
         path: "sobre-nosotros",
