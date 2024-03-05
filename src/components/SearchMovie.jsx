@@ -8,6 +8,8 @@ import FoundMovie from "./FoundMovie";
 import { Link } from "react-router-dom";
 import MovieNotFound from "./MovieNotFound";
 
+import useInput from "./useInput";
+
 function SearchMovie() {
   const [modalShow, setModalShow] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
@@ -19,7 +21,7 @@ function SearchMovie() {
 
   useEffect(() => {
     const getMovieData = async () => {
-      console.log("page: " + page);
+      // console.log("page: " + page);
       try {
         const response = await axios({
           method: "get",
@@ -41,7 +43,7 @@ function SearchMovie() {
         totalPages = response.data.total_pages;
 
         setMoviesData(() => [...response.data.results]);
-        console.log(response);
+        // console.log(response);
       } catch (error) {
         console.error(error);
       }
@@ -53,6 +55,7 @@ function SearchMovie() {
     <FoundMovie moviesData={moviesData} />;
   }, [searchQuery, page]);
 
+  const searchValue = useInput("");
   return (
     <>
       <div className="seachBar mt-3">
@@ -60,16 +63,18 @@ function SearchMovie() {
           <InputGroup.Text id="inputGroup-sizing-default">
             Search Movie
           </InputGroup.Text>
-          <Form.Control
-            placeholder="insert Movie"
-            aria-describedby="inputGroup-sizing-default"
+          <input
+            className="w"
+            placeholder="insert Moviename"
+            value={searchValue.value}
             onChange={(e) => {
+              searchValue.onChange(e);
               setSearchQuery(e.target.value);
               setPage(1);
             }}
           />
           <InputGroup.Text id="inputGroup-sizing-default">
-            Search Movie
+            Search Movie {searchValue.value}
           </InputGroup.Text>
         </InputGroup>
       </div>
