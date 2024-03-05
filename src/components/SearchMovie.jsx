@@ -4,9 +4,7 @@ import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
-import Home from "./Home";
 import FoundMovie from "./FoundMovie";
-import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import MovieNotFound from "./MovieNotFound";
 
@@ -42,7 +40,7 @@ function SearchMovie() {
         });
         totalPages = response.data.total_pages;
         setMoviesData(() => [...response.data.results]);
-        console.log(moviesData);
+        console.log(response);
       } catch (error) {
         console.error(error);
       }
