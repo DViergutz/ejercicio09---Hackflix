@@ -22,7 +22,8 @@ function SearchMovie() {
 
   useEffect(() => {
     const getMovieData = async () => {
-      // console.log("page: " + page);
+      console.log("page: " + page);
+      console.log(searchValue.value);
       try {
         const response = await axios({
           method: "get",
@@ -37,13 +38,16 @@ function SearchMovie() {
           },
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2RkYzZhYWZiMThjMjNhZGIxMWVjNGRkMWIxOTk3YiIsInN1YiI6IjYzZmNhZTZjNmFhOGUwMDBmMGI3NzE4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cxxXmEY4dE-Rq0b9wSnxXuVQvSu2DuKyuudv9IV8rcc",
+            Authorization: import.meta.env.VITE_BEARER,
           },
         });
+
         totalPages = response.data.total_pages;
 
-        setMoviesData(() => [...response.data.results]); //...movies for inf.scroll
+        setMoviesData((prevMoviesData) => [
+          ...prevMoviesData,
+          ...response.data.results,
+        ]);
       } catch (error) {
         console.error(error);
       }
@@ -67,7 +71,11 @@ function SearchMovie() {
             className="w-50"
             placeholder="insert Moviename"
             value={searchValue.value}
-            onChange={searchValue.onChange}
+            onChange={(e) => {
+              searchValue.onChange(e);
+              window.scrollTo(0, 0);
+              setSearchQuery(e.target.value);
+            }}
           />
           <InputGroup.Text id="inputGroup-sizing-default">
             SearchValue: {searchValue.value}

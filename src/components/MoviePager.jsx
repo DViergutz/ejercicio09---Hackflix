@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function MoviePager() {
-  const [modalShow, setModalShow] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState(null);
   const [moviesData, setMoviesData] = useState([]);
   const [page, setPage] = useState(1);
-  let total_pages = 1;
 
   useEffect(() => {
     const getMovieData = async () => {
-      // console.log("page: " + page);
       try {
         const response = await axios({
           method: "get",
@@ -26,15 +21,11 @@ function MoviePager() {
           },
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2RkYzZhYWZiMThjMjNhZGIxMWVjNGRkMWIxOTk3YiIsInN1YiI6IjYzZmNhZTZjNmFhOGUwMDBmMGI3NzE4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cxxXmEY4dE-Rq0b9wSnxXuVQvSu2DuKyuudv9IV8rcc",
+            Authorization: import.meta.env.VITE_BEARER,
           },
         });
-        console.log(response.data);
 
-        // total_pages = response.data.res.total_pages;
-
-        setMoviesData((prevMoviesData) => [...response.data.results]);
+        setMoviesData(() => [...response.data.results]);
       } catch (error) {
         console.error(error);
       }
@@ -48,15 +39,17 @@ function MoviePager() {
       <nav aria-label="Page navigation">
         <ul className="pagination justify-content-center p-2 rounded-bottom">
           <li className="page-item w-25">
-            <a
+            <Link
               className="page-link"
               onClick={() => {
                 setPage((prevPage) => prevPage - 1);
-                console.log(page);
               }}
             >
               Previous Page
-            </a>
+            </Link>
+          </li>
+          <li className="mx-2">
+            <p className="fs-5"> Page: {page}</p>
           </li>
 
           <li className="page-item w-25">
@@ -64,7 +57,6 @@ function MoviePager() {
               className="page-link"
               onClick={() => {
                 setPage((prevPage) => prevPage + 1);
-                console.log(page);
               }}
             >
               Next Page
@@ -88,7 +80,6 @@ function MoviePager() {
                         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                         className="card-img-top rounded"
                         alt="no poster found"
-                        // onClick={() => movieClick(movie)}
                       />
                     </Link>
                   </div>
@@ -105,11 +96,14 @@ function MoviePager() {
               onClick={() => {
                 setPage((prevPage) => prevPage - 1);
                 window.scrollTo(0, 0);
-                console.log(page);
               }}
             >
               Previous Page
             </a>
+          </li>
+
+          <li className="mx-2">
+            <p className="fs-5"> Page: {page}</p>
           </li>
 
           <li className="page-item w-25">
@@ -118,7 +112,6 @@ function MoviePager() {
               onClick={() => {
                 setPage((prevPage) => prevPage + 1);
                 window.scrollTo(0, 0);
-                console.log(page);
               }}
             >
               Next Page

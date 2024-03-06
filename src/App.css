@@ -29,19 +29,34 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #333333;
+  display: flex;
+  align-items: center;
 }
 
 li {
   float: left;
 }
 
-li a {
+li a,
+p.fs-5 {
   display: block;
   color: white;
   text-align: center;
   padding: 16px;
   text-decoration: none;
+  margin: 0;
 }
+p.fs-5 {
+  border: white solid 1px;
+  border-radius: 5px;
+}
+/* li p.fs-5 {
+  display: block;
+  text-align: center;
+  color: #333;
+  background-color: #fff;
+  padding: 16px;
+} */
 
 li a:hover {
   background-color: #111111;
@@ -52,8 +67,9 @@ li a:hover {
   padding: 16px;
 }
 
-.navbarBrand:hover {
-  background-color: #333333;
-
+.navbarBrand:hover,
+.page-link:hover {
+  cursor: pointer;
+  background-color: #111;
   color: red;
 }

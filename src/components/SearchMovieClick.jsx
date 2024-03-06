@@ -36,8 +36,7 @@ function SearchMovieClick() {
         },
         headers: {
           accept: "application/json",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwY2RkYzZhYWZiMThjMjNhZGIxMWVjNGRkMWIxOTk3YiIsInN1YiI6IjYzZmNhZTZjNmFhOGUwMDBmMGI3NzE4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.cxxXmEY4dE-Rq0b9wSnxXuVQvSu2DuKyuudv9IV8rcc",
+          Authorization: import.meta.env.VITE_BEARER,
         },
       });
       totalPages = response.data.total_pages;
