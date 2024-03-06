@@ -63,7 +63,10 @@ function SearchMovieClick() {
         <div className="seachBar mt-3 ">
           <form onSubmit={submitForm} className="container" id="formfield">
             <div className="input-group mb-3 row">
-              <InputGroup.Text id="inputGroup-sizing-default" className="col-2">
+              <InputGroup.Text
+                id="inputGroup-sizing-default"
+                className="col-2 text-wrap"
+              >
                 Search Movie
               </InputGroup.Text>
               <input
