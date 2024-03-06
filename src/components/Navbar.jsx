@@ -12,8 +12,8 @@ function NavbarHead() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto mt-2">
-            <ul className="rounded w-100">
+          <Nav className="me-auto mt-2 d-flex align-items-center">
+            <ul className="rounded w-100 ">
               <li>
                 <Link to="/search">Search onChange</Link>
               </li>
