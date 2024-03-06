@@ -1,10 +1,12 @@
 function Header() {
   return (
     <>
-      <header className="w-100 text-light p-2 text-center">
-        <h1>Hackflix</h1>
-        <h2>Tus peliculas favoritas!</h2>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing.</p>
+      <header className="w-100 text-light p-2 text-center d-flex align-items-center justify-content-center">
+        <div>
+          <h1>Hackflix</h1>
+          <h2>Your favorite movies!</h2>
+          <p>Stay awhile and watch</p>
+        </div>
       </header>
     </>
   );

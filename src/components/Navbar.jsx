@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function NavbarHead() {
   return (
-    <Navbar expand="lg" className="bg-body-secondary ">
+    <Navbar expand="lg" className="bg-body-secondary">
       <Container>
         <Navbar.Brand className="navbarBrand rounded " href="/">
           Hackflix Home
@@ -13,7 +13,7 @@ function NavbarHead() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto mt-2">
-            <ul className="rounded">
+            <ul className="rounded w-100">
               <li>
                 <Link to="/search">Search onChange</Link>
               </li>

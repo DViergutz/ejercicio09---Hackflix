@@ -12,7 +12,6 @@ function Home() {
 
   useEffect(() => {
     const getMovieData = async () => {
-      console.log("page: " + page);
       try {
         const response = await axios({
           method: "get",
@@ -29,10 +28,9 @@ function Home() {
             Authorization: import.meta.env.VITE_BEARER,
           },
         });
-        console.log(response.data.results);
 
         setMoviesData((prevMoviesData) => [
-          ...prevMoviesData, //its an array containing the previous MoviesData when calling setMoviesData
+          ...prevMoviesData,
           ...response.data.results,
         ]);
       } catch (error) {
@@ -47,7 +45,7 @@ function Home() {
     <>
       <InfiniteScroll
         dataLength={moviesData.length}
-        next={() => setPage((prevPage) => prevPage + 1)} // Updating page on scrolling which triggers new fetch
+        next={() => setPage((prevPage) => prevPage + 1)}
         hasMore={true}
         loader={<h4>Loading...</h4>}
         endMessage={
@@ -70,9 +68,7 @@ function Home() {
                         <img
                           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                           className="card-img-top rounded"
-                          alt="no poster found"
-
-                          // onClick={() => movieClick(movie)}
+                          alt={movie.title}
                         />
                       </Link>
                     </div>

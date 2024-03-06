@@ -61,22 +61,21 @@ function SearchMovieClick() {
     <>
       <div className="">
         <div className="seachBar mt-3 ">
-          <form onSubmit={submitForm} className="container" id="formfield">
-            <div className="input-group mb-3 row">
-              <InputGroup.Text id="inputGroup-sizing-default" className="col-2">
-                Search Movie
-              </InputGroup.Text>
+          <InputGroup className="mb-3 ">
+            <InputGroup.Text id="inputGroup-sizing-default" className="">
+              Search Movie
+            </InputGroup.Text>
+            <form onSubmit={submitForm} className="w-100">
               <input
-                id="searchInput"
-                className="col-7"
+                className="w-75 "
                 placeholder="insert Moviename"
                 {...searchValue}
               />
-              <button className="btn btn-success col-3 mx-0 " type="submit">
+              <button className="btn btn-success w-25" type="submit">
                 Search: {searchValue.value}
               </button>
-            </div>
-          </form>
+            </form>
+          </InputGroup>
         </div>
       </div>
       {moviesData.length > 0 ? (
@@ -99,8 +98,7 @@ function SearchMovieClick() {
                             `https://image.tmdb.org/t/p/original${movie.poster_path}`
                           }
                           className="card-img-top rounded"
-                          alt="no poster found"
-                          // onClick={() => movieClick(movie)}
+                          alt={movie.title} // onClick={() => movieClick(movie)}
                         />
                       </Link>
                     </div>
