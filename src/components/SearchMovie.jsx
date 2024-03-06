@@ -64,7 +64,10 @@ function SearchMovie() {
     <>
       <div className="seachBar mt-3">
         <InputGroup className="mb-3 w-100">
-          <InputGroup.Text id="inputGroup-sizing-default" className="w-25">
+          <InputGroup.Text
+            id="inputGroup-sizing-default text-wrap"
+            className="w-25"
+          >
             Search Movie
           </InputGroup.Text>
           <input
@@ -77,7 +80,10 @@ function SearchMovie() {
               setSearchQuery(e.target.value);
             }}
           />
-          <InputGroup.Text id="inputGroup-sizing-default" className="w-25">
+          <InputGroup.Text
+            id="inputGroup-sizing-default text-wrap"
+            className="w-25"
+          >
             Search for: {searchValue.value}
           </InputGroup.Text>
         </InputGroup>
