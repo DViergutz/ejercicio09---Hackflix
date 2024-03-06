@@ -27,7 +27,7 @@ function NavbarHead() {
                 <Link to="/sobre-nosotros">About</Link>
               </li>
               <li>
-                <Link to="/contact">Contact us</Link>
+                <Link to="/contact">Contact me</Link>
               </li>
             </ul>
           </Nav>
