@@ -63,8 +63,8 @@ function SearchMovieClick() {
         <div className="seachBar mt-3 ">
           <InputGroup className="mb-3 ">
             <InputGroup.Text
-              id="inputGroup-sizing-default text-wrap"
-              className=""
+              id="inputGroup-sizing-default"
+              className="text-wrap"
             >
               Search Movie
             </InputGroup.Text>
