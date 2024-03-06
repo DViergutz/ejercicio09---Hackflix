@@ -62,7 +62,10 @@ function SearchMovieClick() {
       <div className="">
         <div className="seachBar mt-3 ">
           <InputGroup className="mb-3 ">
-            <InputGroup.Text id="inputGroup-sizing-default" className="">
+            <InputGroup.Text
+              id="inputGroup-sizing-default text-wrap"
+              className=""
+            >
               Search Movie
             </InputGroup.Text>
             <form onSubmit={submitForm} className="w-100">
@@ -71,7 +74,7 @@ function SearchMovieClick() {
                 placeholder="insert Moviename"
                 {...searchValue}
               />
-              <button className="btn btn-success w-25" type="submit">
+              <button className="btn btn-success w-25 text-wrap" type="submit">
                 Search: {searchValue.value}
               </button>
             </form>
